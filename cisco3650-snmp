@@ -1,0 +1,54 @@
+---
+# SNMP Profile for Cisco Catalyst 3650
+# File: cisco-3650.yaml
+
+name: "cisco-3650"
+sysobjectid:
+  - "1.3.6.1.4.1.9.1.1745"  # SysObjectID for Cisco Catalyst 3650
+
+metrics:
+  # Interface metrics
+  - MIB: IF-MIB
+    table: ifTable
+    symbols:
+      - ifInOctets          # Bytes received on an interface
+      - ifOutOctets         # Bytes sent on an interface
+      - ifAdminStatus       # Administrative status of an interface
+      - ifOperStatus        # Operational status of an interface
+    metric_tags:
+      - tag: interface
+        column: ifDescr     # Interface description (e.g., GigabitEthernet1/0/1)
+
+  # CPU utilization
+  - MIB: CISCO-PROCESS-MIB
+    table: cpmCPUUsageTable
+    symbols:
+      - cpmCPUUsage         # CPU usage percentage
+
+  # Memory utilization
+  - MIB: CISCO-MEMORY-POOL-MIB
+    table: ciscoMemoryPoolTable
+    symbols:
+      - ciscoMemoryPoolUsed        # Memory in use
+      - ciscoMemoryPoolFree        # Free memory
+    metric_tags:
+      - tag: memory_pool
+        column: ciscoMemoryPoolName
+
+  # Environmental metrics
+  - MIB: CISCO-ENTITY-SENSOR-MIB
+    table: entSensorTable
+    symbols:
+      - entSensorValue      # Sensor value (e.g., temperature, voltage)
+    metric_tags:
+      - tag: sensor
+        column: entSensorType
+
+  # Uptime
+  - MIB: SNMPv2-MIB
+    symbols:
+      - sysUpTimeInstance   # System uptime
+
+metadata:
+  description: "SNMP profile for Cisco Catalyst 3650 switches"
+  title: "Cisco Catalyst 3650 SNMP Profile"
