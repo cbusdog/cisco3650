@@ -1,0 +1,85 @@
+metadata:
+  name: cisco-3650
+  sysobjectid: 1.3.6.1.4.1.9.1.1745  # Replace this with the actual sysObjectID for your device
+  description: Cisco Catalyst 3650 Series Switch
+
+metrics:
+  # Interface traffic (inbound/outbound)
+  - OID: 1.3.6.1.2.1.2.2.1.10  # ifInOctets
+    name: if.in.octets
+    type: gauge
+    tags:
+      - interface
+
+  - OID: 1.3.6.1.2.1.2.2.1.16  # ifOutOctets
+    name: if.out.octets
+    type: gauge
+    tags:
+      - interface
+
+  # Interface errors
+  - OID: 1.3.6.1.2.1.2.2.1.14  # ifInErrors
+    name: if.in.errors
+    type: gauge
+    tags:
+      - interface
+
+  - OID: 1.3.6.1.2.1.2.2.1.20  # ifOutErrors
+    name: if.out.errors
+    type: gauge
+    tags:
+      - interface
+
+  # CPU Utilization
+  - OID: 1.3.6.1.4.1.9.2.1.58  # cpmCPUTotal5min
+    name: cisco.cpu.utilization
+    type: gauge
+    tags:
+      - cisco
+      - cpu
+
+  # Memory Utilization
+  - OID: 1.3.6.1.4.1.9.9.221.1.1.1.1.6  # ciscoMemoryPoolUsed
+    name: cisco.memory.used
+    type: gauge
+    tags:
+      - cisco
+      - memory
+
+  - OID: 1.3.6.1.4.1.9.9.221.1.1.1.1.5  # ciscoMemoryPoolFree
+    name: cisco.memory.free
+    type: gauge
+    tags:
+      - cisco
+      - memory
+
+  # System Uptime
+  - OID: 1.3.6.1.2.1.1.3.0  # sysUpTime
+    name: sys.uptime
+    type: gauge
+    tags:
+      - system
+
+  # Temperature
+  - OID: 1.3.6.1.4.1.9.9.13.1.3.1.3  # ciscoEnvMonTemperatureStatusValue
+    name: cisco.env.temperature
+    type: gauge
+    tags:
+      - cisco
+      - temperature
+
+  # Fan Status
+  - OID: 1.3.6.1.4.1.9.9.13.1.5.1.3  # ciscoEnvMonFanState
+    name: cisco.env.fan.status
+    type: gauge
+    tags:
+      - cisco
+      - fan
+
+  # Power Supply Status
+  - OID: 1.3.6.1.4.1.9.9.13.1.6.1.3  # ciscoEnvMonSupplyState
+    name: cisco.env.psu.status
+    type: gauge
+    tags:
+      - cisco
+      - psu
